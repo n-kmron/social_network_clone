@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('homepage');
-})->name('index');
+Route::get('/', [
+    \App\Http\Controllers\PostController::class, 'index'
+])->name('index');
 
 Route::prefix('/auth')->name('auth.')->controller(\App\Http\Controllers\AuthController::class)->group(function () {
     Route::get('/login', function () {

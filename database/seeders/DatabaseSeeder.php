@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call(FillChannels::class);
         $this->call(FillMessages::class);
+        $this->call(FillPosts::class);
 
 
     }
