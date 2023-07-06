@@ -7,9 +7,7 @@ Route::get('/', [
 ])->name('index');
 
 Route::prefix('/auth')->name('auth.')->controller(\App\Http\Controllers\AuthController::class)->group(function () {
-    Route::get('/login', function () {
-        return view('login');
-    })->name('login');
+    Route::get('/login', 'index')->name('login');
     Route::post(
         '/login', 'login'
     )->name('login');
@@ -39,7 +37,9 @@ Route::prefix('/channels')->name('channels.')->controller(\App\Http\Controllers\
 
 Route::prefix('/posts')->name('post.')->controller(\App\Http\Controllers\PostController::class)->group(function () {
     Route::get('/new', 'create')->name('create');
-    Route::post('/new', 'store')->name('store');
+    Route::post('/new', 'store');
+    Route::get('/{post}/edit', 'edit')->name('edit');
+    Route::post('/{post}/edit', 'update');
 });
 
 

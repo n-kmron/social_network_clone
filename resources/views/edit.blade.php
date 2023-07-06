@@ -1,5 +1,5 @@
 @extends('canevas')
-@section('title', 'Create a post')
+@section('title', 'Edit a post')
 @section('content')
     @auth
         @error('owner')
@@ -11,13 +11,13 @@
         <form action="" method="post">
             @csrf
             <div>
-                <input type="text" name="title" value="{{old('title', 'My new post')}}" required>
+                <input type="text" name="title" value="{{old('title', $post->name)}}" required>
                 @error('name')
                 {{$message}}
                 @enderror
             </div>
             <div>
-                <textarea name="content">{{old('content', 'Demo content')}}</textarea>
+                <textarea name="content">{{old('content', $post->content)}}</textarea>
                 @error('content')
                 {{$message}}
                 @enderror

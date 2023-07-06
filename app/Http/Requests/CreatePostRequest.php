@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CreatePostRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class CreatePostRequest extends FormRequest
             'owner' => 'required',
             'name' => ['required', 'min:8'],
             'content' => 'required',
-            'picture_link' => ['required', 'min:8', 'regex:/[0-9a-z\-]+$/', 'unique:posts'],
+            'picture_link' => ['required', 'min:8', 'regex:/[0-9a-z\-]+$/', Rule::unique('posts')->ignore($this->route()->parameter('post'))],
             'likes' => 'required',
         ];
     }
@@ -38,7 +39,7 @@ class CreatePostRequest extends FormRequest
             'owner' => Auth::id(),
             'name' => $this->input('title'),
             'picture_link' => $this->input('picture_link') ?: Auth::id() .  '-' . Str::slug($this->input('title')),
-            'likes' => 0,
+            'likes' => $this->input('likes') ?: 0,
         ]);
     }
 }

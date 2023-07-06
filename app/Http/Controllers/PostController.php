@@ -22,4 +22,15 @@ class PostController extends Controller
         Post::create($request->validated());
         return redirect()->route('index')->with('success', "Your post has been created");
     }
+
+    public function edit(Post $post) {
+        return view('edit', [
+            'post' => $post
+        ]);
+    }
+
+    public function update(Post $post, CreatePostRequest $request) {
+        $post->update($request->validated());
+        return redirect()->route('index')->with('success', "Your post has been edited");
+    }
 }

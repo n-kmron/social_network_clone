@@ -407,6 +407,20 @@ textarea {
     font-weight: bold;
 }
 
+table, td, tr, th {
+    padding: 15px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+td {
+    background: rgba(44, 62, 80, 0.63);
+}
+
+td:hover {
+    background: rgba(44, 62, 80, 0.43);
+}
+
 @media only screen and (min-width: 850px) {
     .site {
         display: flex;
