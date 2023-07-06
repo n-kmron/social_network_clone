@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('content');
             $table->string('picture_link')->unique();
-            $table->integer('likes');
+            $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }

@@ -40,6 +40,7 @@ Route::prefix('/posts')->name('post.')->controller(\App\Http\Controllers\PostCon
     Route::post('/new', 'store');
     Route::get('/{post}/edit', 'edit')->name('edit');
     Route::post('/{post}/edit', 'update');
+    Route::get('/{post}/delete', 'delete')->name('delete');
 });
 
 

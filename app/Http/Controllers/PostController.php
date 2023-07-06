@@ -11,7 +11,7 @@ class PostController extends Controller
 
     public function index(): View {
         return view('homepage', [
-            'posts' => Post::paginate(5)
+            'posts' => Post::orderBy('updated_at', 'desc')->paginate(5)
         ]);
     }
     public function create() {
@@ -27,6 +27,11 @@ class PostController extends Controller
         return view('edit', [
             'post' => $post
         ]);
+    }
+
+    public function delete(Post $post) {
+        $post->delete();
+        return redirect()->route('index')->with('success', "Your post has been deleted");
     }
 
     public function update(Post $post, CreatePostRequest $request) {

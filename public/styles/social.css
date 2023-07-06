@@ -417,8 +417,13 @@ td {
     background: rgba(44, 62, 80, 0.63);
 }
 
+.to-delete {
+    background: red;
+    color: white;
+}
+
 td:hover {
-    background: rgba(44, 62, 80, 0.43);
+    opacity: 0.6
 }
 
 @media only screen and (min-width: 850px) {

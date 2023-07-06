@@ -50,6 +50,7 @@
                     <tr>
                         <th>{{$post->name}}</th>
                         <td><a href="{{route('post.edit', $post->id)}}">Edit</a></td>
+                        <td class="to-delete"><a href="{{route('post.delete', $post->id)}}">Delete</a></td>
                     </tr>
                 @endforeach
             </table>
