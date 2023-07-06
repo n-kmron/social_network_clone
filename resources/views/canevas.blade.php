@@ -15,21 +15,22 @@
     <link rel="stylesheet" type="text/css" href="/styles/social.css">
     <script defer src="script/social.js"></script>
 </head>
-
+@php
+    $routeName = request()->route()->getName();
+@endphp
 <body>
     <header class="topbar">
-        <a href="/" class="topbar-logo">Network</a>
+        <a href="{{route('index')}}" class="topbar-logo">Network</a>
         <nav class="topbar-nav">
-            <a href="{{route('auth.login')}}">@auth My account @endauth @guest Login @endguest</a>
+            <a href="{{route('auth.login')}}" @class(['active' => str_starts_with($routeName, 'auth.')])>@auth My account @endauth @guest Login @endguest</a>
         </nav>
     </header>
-
     <div class="container site">
         <nav class="sidebar">
-            <a href="/" class="sidebar-home active">News</a>
-            <a href="{{route('chatrooms')}}" class="sidebar-messages">Chatrooms</a>
-            <a href="#" class="sidebar-events">Events</a>
-            <a href="#" class="sidebar-amis">Friends</a>
+            <a href="{{route('index')}}" @class(['sidebar-home', 'active' => str_starts_with($routeName, 'index')])>News</a>
+            <a href="{{route('chatrooms')}}" @class(['sidebar-message', 'active' => str_starts_with($routeName, 'chatrooms')])>Chatrooms</a>
+            <a href="#" @class(['sidebar-events', 'active' => str_starts_with($routeName, 'events.')])>Events</a>
+            <a href="#" @class(['sidebar-amis', 'active' => str_starts_with($routeName, 'friends.')])>Friends</a>
         </nav>
         <main class="main">
             @yield('content')
