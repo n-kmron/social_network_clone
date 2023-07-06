@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class CreatePostRequest extends FormRequest
+class FormPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
