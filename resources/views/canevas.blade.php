@@ -49,6 +49,10 @@
                             @csrf
                             <button type="submit">Logout</button>
                         </form>
+                        <form method="get" action="{{route('post.create')}}">
+                            @csrf
+                            <button type="submit">New post</button>
+                        </form>
                         @endauth
                         @guest
                         <div class="card-title">As a guest</div>

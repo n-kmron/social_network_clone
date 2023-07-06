@@ -58,6 +58,34 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Post
+ *
+ * @property int $id
+ * @property int $owner
+ * @property string $name
+ * @property string $content
+ * @property string $picture_link
+ * @property int $likes
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereLikes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereOwner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post wherePictureLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	class IdeHelperPost {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id

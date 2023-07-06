@@ -37,5 +37,10 @@ Route::prefix('/channels')->name('channels.')->controller(\App\Http\Controllers\
     )->name('messages');
 });
 
+Route::prefix('/posts')->name('post.')->controller(\App\Http\Controllers\PostController::class)->group(function () {
+    Route::get('/new', 'create')->name('create');
+    Route::post('/new', 'store')->name('store');
+});
+
 
 
