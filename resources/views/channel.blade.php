@@ -15,7 +15,7 @@
 @endforeach
 <hr>
 <h3 class="msgContent">New message</h3>
-<form method="POST" action="/channels/{{ $messages[0]->id }}/messages">
+<form method="POST" action="{{route('channels.messages', $messages[0]->id)}}">
           @csrf
           <textarea name="message" rows="4" cols="50" required></textarea>
           <br>
@@ -25,7 +25,7 @@
 @endif
 @endauth
 @guest
-<p>You have to be <a href="/login" class="backLink">logged</a> to watch this discussion</p>
+<p>You have to be <a href="{{route('auth.login')}}" class="backLink">logged</a> to watch this discussion</p>
 @endguest
-<a href="/chatrooms" class="backLink">Back to chatrooms</a>
+<a href="{{route('chatrooms')}}" class="backLink">Back to chatrooms</a>
 @endsection

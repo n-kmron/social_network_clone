@@ -20,14 +20,14 @@
     <header class="topbar">
         <a href="/" class="topbar-logo">Network</a>
         <nav class="topbar-nav">
-            <a href="/login">@auth My account @endauth @guest Login @endguest</a>
+            <a href="{{route('auth.login')}}">@auth My account @endauth @guest Login @endguest</a>
         </nav>
     </header>
 
     <div class="container site">
         <nav class="sidebar">
             <a href="/" class="sidebar-home active">News</a>
-            <a href="/chatrooms" class="sidebar-messages">Chatrooms</a>
+            <a href="{{route('chatrooms')}}" class="sidebar-messages">Chatrooms</a>
             <a href="#" class="sidebar-events">Events</a>
             <a href="#" class="sidebar-amis">Friends</a>
         </nav>
@@ -44,7 +44,7 @@
                         @auth
                         <div class="card-title">{{ Auth::user()->name }}</div>
                         <div class="card-date">Inscrit le {{Auth::user()->updated_at}}</div>
-                        <form method="POST" action="/logout">
+                        <form method="POST" action="{{route('auth.logout')}}">
                             @csrf
                             <button type="submit">Logout</button>
                         </form>
@@ -57,7 +57,7 @@
                 <div class="card-body">
                     <p>
                         @guest
-                        <a href="/login">Login/Sign Up</a>.
+                        <a href="{{route('auth.login')}}">Login/Sign Up</a>.
                         @endguest
                     </p>
                 </div>

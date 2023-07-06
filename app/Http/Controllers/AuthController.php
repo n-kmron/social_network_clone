@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use App\Models\User;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
 
           public function login()
@@ -37,7 +37,7 @@ class LoginController extends Controller
                                         'email' => $_POST["email"],
                                         'password' => Hash::make($_POST["psw"])
                               ]);
-                              LoginController::login();
+                              AuthController::login();
                               return view('login');
                     } catch (QueryException $e) {
                               // Duplicate entry for email field

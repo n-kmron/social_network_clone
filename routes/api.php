@@ -17,30 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-//API CHATROOMS
-
-//liste des chatrooms
-Route::get(
-    '/channels',
-    [
-        \App\Http\Controllers\ChannelController::class, 'getChannels'
-    ]
-);
-
-//les messages d'un chatroom
-Route::get(
-    '/channels/{chatRoomId}/messages',
-    [
-        \App\Http\Controllers\ChannelController::class, 'getMessages'
-    ]
-);
-
-//poster un nouveau message
-Route::post(
-    '/channels/{chatRoomId}/messages',
-    [
-        \App\Http\Controllers\ChannelController::class, 'putMessage'
-    ]
-);

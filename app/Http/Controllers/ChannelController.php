@@ -21,10 +21,10 @@ class ChannelController extends Controller
               return view('channel', ['messages' => $messages]);
           }
 
-          public function putMessage($channel)
+          public function sendMessage($channel)
           {
                     $content = $_POST["message"];
-                    Message::putMessage($channel, Auth::id(), $content);
+                    Message::sendMessage($channel, Auth::id(), $content);
                     return view('channel', ['messages' => Message::getMessages($channel)]);
           }
 }

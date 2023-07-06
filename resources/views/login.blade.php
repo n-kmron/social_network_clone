@@ -2,7 +2,7 @@
 @section('title', 'Login')
 @section('content')
 @guest
-<form action="/login" method="post">
+<form action="{{route('auth.login')}}" method="post">
           <div class="imgcontainer">
                     <img src="/img/logo_avatar.png" alt="Avatar" class="avatar">
           </div>
@@ -18,7 +18,7 @@
                     <button type="submit" class="button-log">Login</button>
           </div>
 </form>
-<form action="/register" method="post">
+<form action="{{route('auth.register')}}" method="post">
           @csrf
           <h2>Register</h2>
           <div class="container">

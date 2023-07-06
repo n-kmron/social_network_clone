@@ -33,7 +33,7 @@ class Message extends Model
             return $messages;
     }
 
-    public static function putMessage($channel, $author, $content)
+    public static function sendMessage($channel, $author, $content)
     {
         $message = new Message();
         $message->content = $content;

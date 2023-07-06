@@ -2,10 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 
-//NAVIGATE ROUTES
-
 Route::get('/', function () {
     return view('homepage');
+});
+
+Route::prefix('/auth')->name('auth.')->controller(\App\Http\Controllers\AuthController::class)->group(function () {
+    Route::get('/login', function () {
+        return view('login');
+    })->name('login');
+    Route::post(
+        '/login', 'login'
+    )->name('login');
+    Route::post(
+        '/logout', 'logout'
+    )->name('logout');
+    Route::post(
+        '/register', 'register'
+    )->name('register');
 });
 
 Route::get(
@@ -13,57 +26,16 @@ Route::get(
     [
         \App\Http\Controllers\ChannelController::class, 'getChannels'
     ]
-);
+)->name('chatrooms');
 
-Route::get('/login', function () {
-    return view('login');
+Route::prefix('/channels')->name('channels.')->controller(\App\Http\Controllers\ChannelController::class)->group(function () {
+    Route::get(
+        '/{chatRoomId}/messages', 'getMessages'
+    )->name('messages');
+    Route::post(
+        '/{chatRoomId}/messages', 'sendMessage'
+    )->name('messages');
 });
 
-//AUTH ROUTES
 
-Route::post(
-    '/login',
-    [
-        \App\Http\Controllers\LoginController::class, 'login'
-    ]
-);
-
-Route::post(
-    '/logout',
-    [
-        \App\Http\Controllers\LoginController::class, 'logout'
-    ]
-);
-
-Route::post(
-    '/register',
-    [
-        \App\Http\Controllers\LoginController::class, 'register'
-    ]
-);
-
-
-//FEATURES
-Route::post(
-    '/login/editName',
-    [
-        \App\Http\Controllers\ManageAccountCtrl::class, 'editdisplayname'
-    ]
-);
-
-
-//API
-Route::get(
-    '/channels/{chatRoomId}/messages',
-    [
-        \App\Http\Controllers\ChannelController::class, 'getMessages'
-    ]
-);
-
-Route::post(
-    '/channels/{chatRoomId}/messages',
-    [
-        \App\Http\Controllers\ChannelController::class, 'putMessage'
-    ]
-);
 
