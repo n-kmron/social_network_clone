@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormPostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -42,5 +43,9 @@ class PostController extends Controller
     public function update(Post $post, FormPostRequest $request) {
         $post->update($request->validated());
         return redirect()->route('index')->with('success', "Your post has been edited");
+    }
+
+    public static function getPosts($id) {
+        return Post::where('owner', $id)->get();
     }
 }

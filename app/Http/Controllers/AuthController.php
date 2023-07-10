@@ -2,31 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use App\Models\User;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
 
-    public function index() {
+    public function index(): View {
+        $posts = PostController::getPosts(Auth::id());
         return view('login', [
-            'posts' => AuthController::getPosts()
+            'posts' => $posts,
         ]);
     }
-    public function login()
+    public function login(LoginRequest $request): View|RedirectResponse
     {
-        Auth::attempt([
-            'email' => $_POST["email"],
-            'password' => $_POST["psw"]
-        ]);
-        session()->regenerate();
-        $this->index();
+        $credentials = $request->validated();
+        if(Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return $this->index();
+        }
+        return to_route('auth.login')->withErrors([
+            'email' => 'Email or password invalid'
+        ])->onlyInput('email');
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         session()->invalidate();
@@ -34,33 +39,17 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function register()
+    public function register(RegisterRequest $request): RedirectResponse|View
     {
         try {
-            User::create([
-                'name' => $_POST["matricule"],
-                'displayName' => $_POST["matricule"],
-                'email' => $_POST["email"],
-                'password' => Hash::make($_POST["psw"])
-            ]);
-            AuthController::login();
-            $this->index();
+            $credentials = $request->validated();
+            User::create($credentials);
+            return redirect()->route('auth.login')->with('success', "Your account has been created");
         } catch (QueryException $e) {
-            // Duplicate entry for email field
-            if ($e->getCode() === '23000' && strpos($e->getMessage(), 'users_email_unique') !== false) {
-                echo '<script type="text/javascript">
-                                        alert("This account is already registered");
-                                        </script>';
-                return view('login');
-            }
             echo '<script type="text/javascript">
                                         alert("This account is already registered");
                                         </script>';
-            $this->index();
+            return $this->index();
         }
-    }
-
-    public function getPosts() {
-        return Post::where('owner', Auth::id())->get();
     }
 }
