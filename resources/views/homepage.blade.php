@@ -5,7 +5,7 @@
         <article class="card profil">
             <header class="card-header card-header-avatar">
                 <section>
-                    <img src="img/icons/avatar.png" width="45" height="45" class="card-avatar">
+                    <img src="img/icons/avatar.png" width="45" height="45" class="card-avatar" alt="profile picture">
                 </section>
                 <section>
                     @php
