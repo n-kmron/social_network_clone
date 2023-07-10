@@ -46,14 +46,15 @@
                         @auth
                         <div class="card-title">{{ Auth::user()->name }}</div>
                         <div class="card-date">Inscrit le {{Auth::user()->updated_at}}</div>
-                        <form method="POST" action="{{route('auth.logout')}}">
-                            @csrf
-                            <button type="submit">Logout</button>
-                        </form>
                         <form method="get" action="{{route('post.create')}}">
                             @csrf
                             <button type="submit">New post</button>
                         </form>
+                        <form method="POST" action="{{route('auth.logout')}}">
+                            @csrf
+                            <button type="submit">Logout</button>
+                        </form>
+
                         @endauth
                         @guest
                         <div class="card-title">As a guest</div>

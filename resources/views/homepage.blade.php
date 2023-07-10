@@ -21,7 +21,7 @@
                         $user = \App\Models\User::find($post->owner);
                     @endphp
                     <div class="card-title">{{$user->name}}</div>
-                    <div class="card-date">{{$post->updated_at}}</div>
+                    <div class="card-date">{{$post->created_at}} @if($post->updated_at != $post->created_at) <b>(edited)</b> @endif</div>
                 </section>
             </header>
             <div class="card-body">
