@@ -45,7 +45,7 @@
                     <section>
                         @auth
                         <div class="card-title">{{ Auth::user()->name }}</div>
-                        <div class="card-date">Inscrit le {{Auth::user()->updated_at}}</div>
+                        <div class="card-date">Registered since {{Auth::user()->created_at}}</div>
                         <form method="get" action="{{route('post.create')}}">
                             @csrf
                             <button type="submit">New post</button>
