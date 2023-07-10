@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormPostRequest;
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -27,28 +28,41 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(FormPostRequest $request) {
-        Post::create($this->extractData(new Post(), $request));
-        return redirect()->route('index')->with('success', "Your post has been created");
-    }
-
-    public function edit(Post $post) {
-        return view('edit', [
-            'post' => $post
-        ]);
-    }
-
-    public function delete(Post $post) {
-        if($post->picture_link) {
-            Storage::disk('public')->delete($post->picture_link);
+    public function store(FormPostRequest $request): RedirectResponse {
+        if($request->validated('owner') == Auth::id()) {
+            Post::create($this->extractData(new Post(), $request));
+            return redirect()->route('index')->with('success', "Your post has been created");
         }
-        $post->delete();
-        return redirect()->route('index')->with('success', "Your post has been deleted");
+        return redirect()->route('index')->with('wrong', "You're not able to store this post");
     }
 
-    public function update(Post $post, FormPostRequest $request) {
-        $post->update($this->extractData($post, $request));
-        return redirect()->route('index')->with('success', "Your post has been edited");
+    public function edit(Post $post): View|RedirectResponse {
+        if($post->owner == Auth::id()) {
+            return view('edit', [
+                'post' => $post,
+                'suggestions' => FriendController::getSuggestions()
+            ]);
+        }
+        return redirect()->back()->with('wrong', "You're not able to edit this post");
+    }
+
+    public function delete(Post $post): RedirectResponse{
+        if($post->owner == Auth::id()) {
+            if($post->picture_link) {
+                Storage::disk('public')->delete($post->picture_link);
+            }
+            $post->delete();
+            return redirect()->route('index')->with('success', "Your post has been deleted");
+        }
+        return redirect()->route('index')->with('wrong', "You're not able to delete this post");
+    }
+
+    public function update(Post $post, FormPostRequest $request): RedirectResponse {
+        if($request->validated('owner') == Auth::id()) {
+            $post->update($this->extractData($post, $request));
+            return redirect()->route('index')->with('success', "Your post has been edited");
+        }
+        return redirect()->route('index')->with('wrong', "You're not able to update this post");
     }
 
     private function extractData(Post $post, FormPostRequest $request): array {

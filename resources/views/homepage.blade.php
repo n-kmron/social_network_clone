@@ -1,15 +1,6 @@
 @extends('canevas')
 @section('title', 'Homepage')
 @section('content')
-    @if(session('success'))
-        <div class="alert-success">
-            {{session('success')}}
-        </div>
-    @elseif(session('wrong'))
-        <div class="alert-wrong">
-            {{session('wrong')}}
-        </div>
-    @endif
     @foreach($posts as $post)
         <article class="card profil">
             <header class="card-header card-header-avatar">

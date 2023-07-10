@@ -34,6 +34,15 @@
             <a href="#" @class(['sidebar-amis', 'active' => str_starts_with($routeName, 'friends.')])>Friends</a>
         </nav>
         <main class="main">
+            @if(session('success'))
+                <div class="alert-success">
+                    {{session('success')}}
+                </div>
+            @elseif(session('wrong'))
+                <div class="alert-wrong">
+                    {{session('wrong')}}
+                </div>
+            @endif
             @yield('content')
         </main>
         <aside class="aside">
