@@ -1,7 +1,7 @@
 # Social Network
 A simple clone of a random social network
 
-Side project done by myself on vacation.
+Side project done by myself during vacation.
 
 ## WARNING
 This app is not a finished project but in development.
@@ -25,7 +25,7 @@ To build the project, you'll have to run the makefile by using `make` at the roo
   
 ## Author
 
-* Cameron Noupoue
+Cameron Noupoue
 
 ## Credits
 The theme of the interface is inspired by a youtube video
