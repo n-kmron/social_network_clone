@@ -20,10 +20,10 @@ Route::get(
 
 Route::prefix('/channels')->name('channels.')->controller(\App\Http\Controllers\ChannelController::class)->group(function () {
     Route::get('/{chatRoomId}/messages', 'getMessages')->name('messages');
-    Route::post('/{chatRoomId}/messages', 'sendMessage')->name('messages');
+    Route::post('/{chatRoomId}/messages', 'sendMessage')->name('messages')->middleware('auth');
 });
 
-Route::prefix('/posts')->name('post.')->controller(\App\Http\Controllers\PostController::class)->group(function () {
+Route::prefix('/posts')->name('post.')->controller(\App\Http\Controllers\PostController::class)->middleware('auth')->group(function () {
     Route::get('/new', 'create')->name('create');
     Route::post('/new', 'store');
     Route::get('/{post}/edit', 'edit')->name('edit');
