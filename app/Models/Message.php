@@ -29,7 +29,7 @@ class Message extends Model
     }
 
     public static function getMessages($channel) {
-            $messages = DB::select("SELECT content, u.name AS username, c.name, m.updated_at, c.id FROM messages m JOIN channels c ON m.channel_id = c.id JOIN users u ON m.author_id = u.id WHERE channel_id=$channel ORDER BY m.updated_at ASC;");
+            $messages = DB::select("SELECT content, u.name AS username, c.name, c.topic, m.updated_at, c.id FROM messages m JOIN channels c ON m.channel_id = c.id JOIN users u ON m.author_id = u.id WHERE channel_id=$channel ORDER BY m.updated_at ASC;");
             return $messages;
     }
 

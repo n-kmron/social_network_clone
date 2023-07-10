@@ -12,19 +12,25 @@ class ChannelController extends Controller
           public function getChannels(): View
           {
               $channels = Channel::all();
-              return view('chatrooms', ['channels' => $channels]);
+              return view('chatrooms', [
+                  'channels' => $channels,
+                  'suggestions' => FriendController::getSuggestions(),
+              ]);
           }
 
           public function getMessages($channel)
           {
               $messages = Message::getMessages($channel);
-              return view('channel', ['messages' => $messages]);
+              return view('channel', [
+                  'messages' => $messages,
+                  'suggestions' => FriendController::getSuggestions()
+              ]);
           }
 
           public function sendMessage($channel)
           {
                     $content = $_POST["message"];
                     Message::sendMessage($channel, Auth::id(), $content);
-                    return view('channel', ['messages' => Message::getMessages($channel)]);
+                    return ChannelController::getMessages($channel);
           }
 }

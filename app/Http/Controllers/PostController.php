@@ -14,7 +14,8 @@ class PostController extends Controller
 
     public function index(): View {
         return view('homepage', [
-            'posts' => Post::orderBy('updated_at', 'desc')->paginate(5)
+            'posts' => Post::orderBy('updated_at', 'desc')->paginate(5),
+            'suggestions' => FriendController::getSuggestions(),
         ]);
     }
     public function create() {
