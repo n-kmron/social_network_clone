@@ -17,6 +17,7 @@ class AuthController extends Controller
         $posts = PostController::getPosts(Auth::id());
         return view('login', [
             'posts' => $posts,
+            'suggestions' => FriendController::getSuggestions(),
         ]);
     }
     public function login(LoginRequest $request): View|RedirectResponse

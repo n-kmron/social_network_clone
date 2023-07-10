@@ -71,38 +71,16 @@
             </article>
             <div class="sidebar-title">Suggestion</div>
             <div class="friends-list">
-                <div class="friend">
-                    <img src="https://via.placeholder.com/73x73">
-                    <div class="friend-body">
-                        <a href="#" class="friend-name">John Doe</a>
-                        <div class="friend-connections">15 amis communs</div>
-                        <a href="#" class="friend-add">Ajouter en amis</a>
+                @foreach($suggestions as $suggest)
+                    <div class="friend">
+                        <img src="/img/icons/avatar.png" width="40" height="40">
+                        <div class="friend-body">
+                            <a href="#" class="friend-name">{{ $suggest->name }}</a>
+                            <div class="friend-connections">3 common friends</div>
+                            <a href="#" class="friend-add">Add friend</a>
+                        </div>
                     </div>
-                </div>
-                <div class="friend">
-                    <img src="https://via.placeholder.com/73x73">
-                    <div class="friend-body">
-                        <a href="#" class="friend-name">Ayoub Nedjar</a>
-                        <div class="friend-connections">2 amis communs</div>
-                        <a href="#" class="friend-add">Ajouter en amis</a>
-                    </div>
-                </div>
-                <div class="friend">
-                    <img src="https://via.placeholder.com/73x73">
-                    <div class="friend-body">
-                        <a href="#" class="friend-name">Nabil Khdim</a>
-                        <div class="friend-connections">31 amis communs</div>
-                        <a href="#" class="friend-add">Ajouter en amis</a>
-                    </div>
-                </div>
-                <div class="friend">
-                    <img src="https://via.placeholder.com/73x73">
-                    <div class="friend-body">
-                        <a href="#" class="friend-name">Reda Belkhiri</a>
-                        <div class="friend-connections">4 amis communs</div>
-                        <a href="#" class="friend-add">Ajouter en amis</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </aside>
     </div>
