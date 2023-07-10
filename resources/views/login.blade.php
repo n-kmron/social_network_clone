@@ -9,7 +9,7 @@
     @guest
         <form action="{{route('auth.login')}}" method="post">
             <div class="imgcontainer">
-                <img src="/img/logo_avatar.png" alt="Avatar" class="avatar">
+                <img src="/img/icons/logo_avatar.png" alt="Avatar" class="avatar">
             </div>
             @csrf
             <h2>Login</h2>

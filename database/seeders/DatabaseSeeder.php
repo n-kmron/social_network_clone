@@ -12,22 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-        \App\Models\User::factory()->create([
-            'name' => 'Cameron Noupoue',
-            'email' => 'cameron@example.com',
-            'password' => Hash::make('root'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Batman',
-            'email' => 'batman@example.com',
-            'password' => Hash::make('root'),
-        ]);
+        $this->call(FillUsers::class);
         $this->call(FillChannels::class);
         $this->call(FillMessages::class);
         $this->call(FillPosts::class);
-
-
     }
 }

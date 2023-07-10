@@ -13,11 +13,6 @@ class FillChannels extends Seeder
      */
     public function run(): void
     {
-
-        Channel::createChannel('comptoir', 'Tout ce qui ne va pas ailleurs');
-
-        Channel::createChannel('webg4', "Tout ce qui concerne l'UE WEBG4'");
-
-        Channel::createChannel('dev4', 'À propos de DEV4');
+        \App\Models\Channel::factory(5)->create();
     }
 }
