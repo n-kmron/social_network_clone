@@ -110,22 +110,22 @@ a {
 
 .sidebar .sidebar-messages::before {
     background: url(../img/icons/messages.png) center center / contain no-repeat;
-;
 }
 
 .sidebar .sidebar-events::before {
     background: url(../img/icons/calendar.png) center center / contain no-repeat;
-;
 }
 
 .sidebar .sidebar-groupes::before {
     background: url(../img/icons/group.png) center center / contain no-repeat;
-;
 }
 
 .sidebar .sidebar-amis::before {
     background: url(../img/icons/group.png) center center / contain no-repeat;
-;
+}
+
+.sidebar .sidebar-events {
+    cursor: not-allowed;
 }
 
 .card {

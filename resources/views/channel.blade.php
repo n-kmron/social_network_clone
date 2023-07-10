@@ -6,6 +6,7 @@
 <p>This chat is empty, post a new message to start it !</p>
 @else
 <h1>{{ $messages[0]->name }}</h1>
+<h3>{{ $messages[0]->topic }}</h3>
 <hr>
 @foreach ($messages as $message)
 <div class="message">
