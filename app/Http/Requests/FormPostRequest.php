@@ -28,7 +28,7 @@ class FormPostRequest extends FormRequest
             'owner' => 'required',
             'name' => ['required', 'min:8'],
             'content' => 'required',
-            'picture_link' => ['required', 'min:8', 'regex:/[0-9a-z\-]+$/', Rule::unique('posts')->ignore($this->route()->parameter('post'))],
+            'picture_link' => ['image', 'max:5000']
         ];
     }
 
@@ -37,7 +37,13 @@ class FormPostRequest extends FormRequest
         $this->merge([
             'owner' => Auth::id(),
             'name' => $this->input('title'),
-            'picture_link' => $this->input('picture_link') ?: Auth::id() .  '-' . Str::slug($this->input('title')),
         ]);
+    }
+
+    public function messages()
+    {
+        return [
+            'picture_link' => 'Your image is not in a good format or is too big.',
+        ];
     }
 }

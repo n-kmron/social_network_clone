@@ -20,7 +20,7 @@ class FillPosts extends Seeder
             'name' => 'First article',
             'content' => "Oh right. I forgot about the battle. I just told you! You've be killed me ! You don't know how to do any of those. Hey, you add a one and two zeros to that or we walk! No! Don't jump !
                             I'm sure those windmills will keep them cool. Who am I making this out to? Yes, if you make it look like an electrical fire. When you do things right, people won't be sure you've done anything at all. Who's a real live robot or is that some king of cheesy New Year's costume ?",
-            'picture_link' => 'background2.png',
+            'picture_link' => 'posts/1/background2.png',
             'likes' => 121,
         ]);
 
@@ -29,7 +29,7 @@ class FillPosts extends Seeder
             'name' => 'Countryside',
             'content' => "Oh right. I forgot about the battle. I just told you! You've be killed me ! You don't know how to do any of those. Hey, you add a one and two zeros to that or we walk! No! Don't jump !
                             I'm sure those windmills will keep them cool. Who am I making this out to? Yes, if you make it look like an electrical fire. When you do things right, people won't be sure you've done anything at all. Who's a real live robot or is that some king of cheesy New Year's costume ?",
-            'picture_link' => 'background.png',
+            'picture_link' => 'posts/2/background.png',
             'likes' => 3124,
         ]);
     }

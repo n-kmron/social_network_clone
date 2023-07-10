@@ -29,7 +29,7 @@
     <div class="container site">
         <nav class="sidebar">
             <a href="{{route('index')}}" @class(['sidebar-home', 'active' => str_starts_with($routeName, 'index')])>News</a>
-            <a href="{{route('chatrooms')}}" @class(['sidebar-message', 'active' => str_starts_with($routeName, 'chatrooms')])>Chatrooms</a>
+            <a href="{{route('chatrooms')}}" @class(['sidebar-messages', 'active' => str_starts_with($routeName, 'chatrooms')])>Chatrooms</a>
             <a href="#" @class(['sidebar-events', 'active' => str_starts_with($routeName, 'events.')])>Events</a>
             <a href="#" @class(['sidebar-amis', 'active' => str_starts_with($routeName, 'friends.')])>Friends</a>
         </nav>
@@ -40,7 +40,7 @@
             <article class="card">
                 <header class="card-header card-header-avatar">
                     <section>
-                        <img src="/img/social/avatar.png" width="45" height="45" class="card-avatar">
+                        <img src="/img/icons/avatar.png" width="45" height="45" class="card-avatar">
                     </section>
                     <section>
                         @auth

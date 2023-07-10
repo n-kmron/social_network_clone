@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('owner');
             $table->string('name');
             $table->string('content');
-            $table->string('picture_link')->unique();
+            $table->string('picture_link')->unique()->nullable();
             $table->integer('likes')->default(0);
             $table->timestamps();
         });

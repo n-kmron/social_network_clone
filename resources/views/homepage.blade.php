@@ -14,7 +14,7 @@
         <article class="card profil">
             <header class="card-header card-header-avatar">
                 <section>
-                    <img src="img/social/avatar.png" width="45" height="45" class="card-avatar">
+                    <img src="img/icons/avatar.png" width="45" height="45" class="card-avatar">
                 </section>
                 <section>
                     @php
@@ -25,9 +25,9 @@
                 </section>
             </header>
             <div class="card-body">
-                <p>
-                    <img src="img/social/{{$post->picture_link}}" alt="paysage" class="fullwidth">
-                </p>
+                @if($post->picture_link)
+                    <img src="{{$post->imageUrl()}}" alt="paysage" class="fullwidth">
+                @endif
                 <h3>{{$post->name}}</h3>
                 <p>{{$post->content}}</p>
             </div>
