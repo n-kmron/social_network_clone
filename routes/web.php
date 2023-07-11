@@ -31,5 +31,12 @@ Route::prefix('/posts')->name('post.')->controller(\App\Http\Controllers\PostCon
     Route::get('/{post}/delete', 'delete')->name('delete');
 });
 
+Route::prefix('/friends')->name('friend.')->controller(\App\Http\Controllers\FriendController::class)->middleware('auth')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{person1}/add/{person2}', 'add')->name('add');
+    Route::get('/{person1}/remove/{person2}', 'remove')->name('remove');
+    Route::get('/{friendship}', 'acceptFriend')->name('accept');
+});
+
 
 

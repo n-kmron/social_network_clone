@@ -31,7 +31,7 @@
             <a href="{{route('index')}}" @class(['sidebar-home', 'active' => str_starts_with($routeName, 'index')])>News</a>
             <a href="{{route('chatrooms')}}" @class(['sidebar-messages', 'active' => str_starts_with($routeName, 'chatrooms')])>Chatrooms</a>
             <a href="#" @class(['sidebar-events', 'active' => str_starts_with($routeName, 'events.')])>Events</a>
-            <a href="#" @class(['sidebar-amis', 'active' => str_starts_with($routeName, 'friends.')])>Friends</a>
+            <a href="{{route('friend.index')}}" @class(['sidebar-amis', 'active' => str_starts_with($routeName, 'friend.')])>Friends</a>
         </nav>
         <main class="main">
             @if(session('success'))
@@ -42,6 +42,9 @@
                 <div class="alert-wrong">
                     {{session('wrong')}}
                 </div>
+            @endif
+            @if(isset($message))
+                {{ $message }}
             @endif
             @yield('content')
         </main>
@@ -85,8 +88,13 @@
                         <img src="/img/icons/avatar.png" width="40" height="40">
                         <div class="friend-body">
                             <a href="#" class="friend-name">{{ $suggest->name }}</a>
+                            @auth
                             <div class="friend-connections">3 common friends</div>
-                            <a href="#" class="friend-add">Add friend</a>
+                            <a href="{{ route('friend.add', ['person1' => \Illuminate\Support\Facades\Auth::id(), 'person2' => $suggest->id]) }}" class="friend-add">Add friend</a>
+                            @endauth
+                            @guest
+                                You have to be logged to add this friend.
+                            @endguest
                         </div>
                     </div>
                 @endforeach

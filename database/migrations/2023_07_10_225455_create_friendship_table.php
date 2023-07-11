@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('friendship', function (Blueprint $table) {
+        Schema::create('friendships', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("person1");
             $table->unsignedBigInteger("person2");
-            $table->enum('status', ['pending', 'confirmed']);
+            $table->enum('status', ['pending', 'confirmed'])->default('pending');
             $table->timestamps();
 
             $table->foreign("person1", "person1fk")->references("id")->on("users")->cascadeOnDelete();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('friendship');
+        Schema::dropIfExists('friendships');
     }
 };

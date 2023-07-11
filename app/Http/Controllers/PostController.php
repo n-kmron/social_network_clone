@@ -19,7 +19,7 @@ class PostController extends Controller
             'suggestions' => FriendController::getSuggestions(),
         ]);
     }
-    public function create() {
+    public function create(): View {
         $post = new Post();
         $post->name = 'New post';
         $post->content = 'Content';

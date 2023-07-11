@@ -16,12 +16,4 @@ class Channel extends Model
         'name',
         'topic'
     ];
-
-    public static function createChannel($name, $topic)
-    {
-        return self::create([
-            'name' => $name,
-            'topic' => $topic,
-        ]);
-    }
 }

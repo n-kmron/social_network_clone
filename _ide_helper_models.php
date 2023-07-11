@@ -19,6 +19,7 @@ namespace App\Models{
  * @property string $topic
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\ChannelFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Channel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Channel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Channel query()
@@ -34,6 +35,24 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Friendship
+ *
+ * @property int $id
+ * @property int $person1
+ * @property int $person2
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Friendship newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Friendship newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Friendship query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperFriendship {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Message
  *
  * @property int $id
@@ -42,6 +61,7 @@ namespace App\Models{
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\MessageFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Message newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Message newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Message query()
@@ -64,10 +84,11 @@ namespace App\Models{
  * @property int $owner
  * @property string $name
  * @property string $content
- * @property string $picture_link
+ * @property string|null $picture_link
  * @property int $likes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Post query()

@@ -77,7 +77,7 @@
                 @endforeach
             </table>
         @else
-            test
+            You have no post.
         @endif
     @endauth
 @endsection
