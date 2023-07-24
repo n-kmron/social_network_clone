@@ -24,7 +24,8 @@ class PostController extends Controller
         $post->name = 'New post';
         $post->content = 'Content';
         return view('create', [
-            'post' => $post
+            'post' => $post,
+            'suggestions' => FriendController::getSuggestions()
         ]);
     }
 
