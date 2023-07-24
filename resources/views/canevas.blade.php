@@ -78,7 +78,7 @@
                     </p>
                 </div>
             </article>
-            <div class="sidebar-title">Suggestion</div>
+            <div class="sidebar-title">Suggestions</div>
             <div class="friends-list">
                 @foreach($suggestions as $suggest)
                     <div class="friend">

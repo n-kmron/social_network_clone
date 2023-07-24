@@ -15,10 +15,16 @@ class AuthController extends Controller
 
     public static function index(): View {
         $posts = PostController::getPosts(Auth::id());
+        if(Auth::user()) {
+            return view('login', [
+                'posts' => $posts,
+                'suggestions' => FriendController::getSuggestions(),
+                'notifications' => NotificationController::getNotifications(Auth::user())
+            ]);
+        }
         return view('login', [
             'posts' => $posts,
             'suggestions' => FriendController::getSuggestions(),
-            'notifications' => NotificationController::getNotifications(Auth::user())
         ]);
     }
     public function login(LoginRequest $request): View|RedirectResponse

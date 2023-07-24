@@ -87,12 +87,10 @@
             <table>
                 @foreach($notifications as $notification)
                     @php
-                        $dataArray = json_decode($notification, true);
-                        $channelId = $dataArray['data']['channel_id'];
-                        $channelName = \App\Http\Controllers\ChannelController::getName($channelId);
+                        $notificationContent = \App\Http\Controllers\NotificationController::getContent($notification);
                     @endphp
                     <tr>
-                        <th>There is new message(s) in {{$channelName}} ! </th>
+                        <th>{{$notificationContent}}</th>
                     </tr>
                 @endforeach
             </table>

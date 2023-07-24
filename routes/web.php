@@ -39,7 +39,7 @@ Route::prefix('/friends')->name('friend.')->controller(\App\Http\Controllers\Fri
 });
 
 Route::prefix('/notification')->name('notification.')->controller(\App\Http\Controllers\NotificationController::class)->middleware('auth')->group(function () {
-    Route::get('/{user}/read', 'read')->name('read');
+    Route::get('/{user}/read', 'readAll')->name('read');
 });
 
 

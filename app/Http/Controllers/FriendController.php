@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Friendship;
 use App\Models\User;
+use App\Notifications\ChatroomNotification;
+use App\Notifications\FriendshipNotification;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +33,8 @@ class FriendController extends Controller
             $friendship->person1 = $person1;
             $friendship->person2 = $person2;
             $friendship->save();
+            $user = User::where('id', $person2)->first();
+            $user->notify(new FriendshipNotification($person1, 'request'));
             return redirect()->back()->with('message', 'You just requested ' . User::find($person2) . ' as a friend.');
         }
         return redirect()->back()->with('message', 'You cannot do this operation.');
@@ -40,9 +44,13 @@ class FriendController extends Controller
         if($friendship->person1 != Auth::id()) {
             $friendship->status = 'confirmed';
             $friendship->save();
-            return redirect()->back()->with('message', 'You just accepted this new friend.');
+            $user1 = User::where('id', $friendship->person2)->first();
+            $user2 = User::where('id', $friendship->person1)->first();
+            $user1->notify(new FriendshipNotification($friendship->person1, 'confirmed'));
+            $user2->notify(new FriendshipNotification($friendship->person2, 'confirmed'));
+            return redirect()->back()->with('success', 'You just accepted this new friend.');
         }
-        return redirect()->back()->with('message', 'You are not able to accept this person.');
+        return redirect()->back()->with('wrong', 'You are not able to accept this person.');
     }
 
     public function remove(int $person1, int $person2): RedirectResponse {
@@ -55,8 +63,8 @@ class FriendController extends Controller
         })->first();
         if(($person1 == Auth::id() || $person2 == Auth::id()) && $friendship->count() > 0) {
             $friendship->delete();
-            return redirect()->back()->with('message', 'You just removed ' . User::find($person2) . ' as a friend.');
+            return redirect()->back()->with('success', 'You just removed ' . User::find($person2) . ' as a friend.');
         }
-        return redirect()->back()->with('message', 'You cannot do this operation.');
+        return redirect()->back()->with('wrong', 'You cannot do this operation.');
     }
 }
