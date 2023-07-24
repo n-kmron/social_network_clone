@@ -13,11 +13,12 @@ use Illuminate\View\View;
 class AuthController extends Controller
 {
 
-    public function index(): View {
+    public static function index(): View {
         $posts = PostController::getPosts(Auth::id());
         return view('login', [
             'posts' => $posts,
             'suggestions' => FriendController::getSuggestions(),
+            'notifications' => NotificationController::getNotifications(Auth::user())
         ]);
     }
     public function login(LoginRequest $request): View|RedirectResponse

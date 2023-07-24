@@ -79,5 +79,25 @@
         @else
             You have no post.
         @endif
+        <br>
+        @if(isset($notifications))
+            <p>My notifications</p>
+            <button><a href="{{route('notification.read', \Illuminate\Support\Facades\Auth::user())}}">Read all</a></button>
+            <hr>
+            <table>
+                @foreach($notifications as $notification)
+                    @php
+                        $dataArray = json_decode($notification, true);
+                        $channelId = $dataArray['data']['channel_id'];
+                        $channelName = \App\Http\Controllers\ChannelController::getName($channelId);
+                    @endphp
+                    <tr>
+                        <th>There is new message(s) in {{$channelName}} ! </th>
+                    </tr>
+                @endforeach
+            </table>
+        @else
+            You have no notifications.
+        @endif
     @endauth
 @endsection

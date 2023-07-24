@@ -43,9 +43,6 @@
                     {{session('wrong')}}
                 </div>
             @endif
-            @if(isset($message))
-                {{ $message }}
-            @endif
             @yield('content')
         </main>
         <aside class="aside">

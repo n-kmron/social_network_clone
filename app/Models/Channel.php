@@ -16,4 +16,12 @@ class Channel extends Model
         'name',
         'topic'
     ];
+
+    public static function getName(int $id) : string {
+        $channel = Channel::where('id', $id)->first();
+        if ($channel) {
+            return $channel->name;
+        }
+        return '[Channel not found]';
+    }
 }
