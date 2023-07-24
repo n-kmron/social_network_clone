@@ -1,5 +1,5 @@
 @extends('canevas')
-@section('title', 'Homepage')
+@section('title', 'Create a post')
 @section('content')
     @foreach($posts as $post)
         <article class="card profil">
@@ -28,5 +28,7 @@
             </footer>
         </article>
     @endforeach
-    {{$posts->links()}}
+    <div class="pagination">
+        {{ $posts->links() }}
+    </div>
 @endsection
