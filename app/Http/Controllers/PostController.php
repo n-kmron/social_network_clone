@@ -34,7 +34,7 @@ class PostController extends Controller
             Post::create($this->extractData(new Post(), $request));
             return redirect()->route('index')->with('success', "Your post has been created");
         }
-        return redirect()->route('index')->with('wrong', "You're not able to store this post");
+        return abort(401);
     }
 
     public function edit(Post $post): View|RedirectResponse {
@@ -44,7 +44,7 @@ class PostController extends Controller
                 'suggestions' => FriendController::getSuggestions()
             ]);
         }
-        return redirect()->back()->with('wrong', "You're not able to edit this post");
+        return abort(401);
     }
 
     public function delete(Post $post): RedirectResponse{
@@ -55,7 +55,7 @@ class PostController extends Controller
             $post->delete();
             return redirect()->route('index')->with('success', "Your post has been deleted");
         }
-        return redirect()->route('index')->with('wrong', "You're not able to delete this post");
+        return abort(401);
     }
 
     public function update(Post $post, FormPostRequest $request): RedirectResponse {
@@ -63,7 +63,7 @@ class PostController extends Controller
             $post->update($this->extractData($post, $request));
             return redirect()->route('index')->with('success', "Your post has been edited");
         }
-        return redirect()->route('index')->with('wrong', "You're not able to update this post");
+        return abort(401);
     }
 
     private function extractData(Post $post, FormPostRequest $request): array {
