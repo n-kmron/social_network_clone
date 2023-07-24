@@ -11,7 +11,8 @@ This app is not a finished project but in development.
 - Auth system (login/register)
 - Create, update and delete posts
 - Feed with other people's posts
-- FUTURE: adds friends and chat with them
+- Add friends
+- Notification system
   
 ## Building and launch
 
@@ -28,6 +29,6 @@ To build the project, you'll have to run the makefile by using `make` at the roo
 Cameron Noupoue
 
 ## Credits
-The theme of the interface is inspired by a youtube video
+The theme of the interface is inspired by a youtube video (temp)
 
 
