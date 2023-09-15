@@ -17,6 +17,7 @@ This app is not a finished project but in development.
 ## Building and launch
 
 To build the project, you'll have to run the makefile by using `make` at the root of the repository to compile.
+To log in with the default user : `johndoe@example.com` with password `password`
 
 ## Code 
 
