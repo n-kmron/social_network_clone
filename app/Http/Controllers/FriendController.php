@@ -63,7 +63,7 @@ class FriendController extends Controller
         })->first();
         if(($person1 == Auth::id() || $person2 == Auth::id()) && $friendship->count() > 0) {
             $friendship->delete();
-            return redirect()->back()->with('success', 'You just removed ' . User::find($person2) . ' as a friend.');
+            return redirect()->back()->with('success', 'You just removed ' . User::find($person2)->name . ' as a friend.');
         }
         return redirect()->back()->with('wrong', 'You cannot do this operation.');
     }
